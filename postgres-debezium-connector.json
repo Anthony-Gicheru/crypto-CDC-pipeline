@@ -1,0 +1,22 @@
+{
+  "name": "local-postgres-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "172.17.0.1",
+    "database.port": "5433",
+    "database.user": "postgres",
+    "database.password": "12345",
+    "database.dbname": "postgres",
+    "database.server.name": "localpg",
+    "plugin.name": "pgoutput",
+    "slot.name": "debezium_slot",
+    "publication.name": "debezium_pub",
+    "topic.prefix": "localpg",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "snapshot.mode": "initial"
+  }
+}
