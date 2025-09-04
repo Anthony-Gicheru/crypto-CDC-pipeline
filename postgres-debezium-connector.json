@@ -1,14 +1,13 @@
 {
-  "name": "local-postgres-connector",
+  "name": "postgres-debezium-connector",
   "config": {
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
     "tasks.max": "1",
-    "database.hostname": "172.17.0.1",
-    "database.port": "5433",
+    "database.hostname": "postgres",
+    "database.port": "5432",
     "database.user": "postgres",
-    "database.password": "12345",
-    "database.dbname": "postgres",
-    "database.server.name": "localpg",
+    "database.password": "password",
+    "database.dbname": "binance",
     "plugin.name": "pgoutput",
     "slot.name": "debezium_slot",
     "publication.name": "debezium_pub",
@@ -20,3 +19,5 @@
     "snapshot.mode": "initial"
   }
 }
+
+

@@ -1,0 +1,26 @@
+{
+  "name": "debezium-cassandra-connector",
+  "config": {
+    "connector.class": "com.datastax.oss.kafka.sink.CassandraSinkConnector",
+    "tasks.max": "1",
+    "topics": "binance.public.latest_prices,binance.public.recent_trades,binance.public.klines_15m,binance.public.stats_24h,binance.public.orderbook_bids,binance.public.orderbook_asks",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "contactPoints": "cassandra",
+    "port": "9042",
+    "loadBalancing.localDc": "datacenter1",
+    "auth.username": "cassandra",
+    "auth.password": "cassandra",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true",
+    "topic.binance.public.latest_prices.binance.latest_prices.mapping": "symbol=value.symbol, price=value.price, event_time=value.event_time",
+    "topic.binance.public.recent_trades.binance.recent_trades.mapping": "id=value.id, symbol=value.symbol, price=value.price, qty=value.qty, quote_qty=value.quoteQty, is_buyer_maker=value.isBuyerMaker, time=value.time, event_time=value.event_time",
+    "topic.binance.public.klines_15m.binance.klines_15m.mapping": "open_time=value.open_time, open=value.open, high=value.high, low=value.low, close=value.close, volume=value.volume, close_time=value.close_time, num_trades=value.num_trades, symbol=value.symbol, event_time=value.event_time",
+    "topic.binance.public.stats_24h.binance.stats_24h.mapping": "symbol=value.symbol, price_change=value.priceChange, price_change_percent=value.priceChangePercent, weighted_avg_price=value.weightedAvgPrice, prev_close_price=value.prevClosePrice, last_price=value.lastPrice, last_qty=value.lastQty, bid_price=value.bidPrice, ask_price=value.askPrice, open_price=value.openPrice, high_price=value.highPrice, low_price=value.lowPrice, volume=value.volume, quote_volume=value.quoteVolume, open_time=value.openTime, close_time=value.closeTime, event_time=value.event_time",
+    "topic.binance.public.orderbook_bids.binance.orderbook_bids.mapping": "price=value.price, quantity=value.quantity, symbol=value.symbol, event_time=value.event_time",
+    "topic.binance.public.orderbook_asks.binance.orderbook_asks.mapping": "price=value.price, quantity=value.quantity, symbol=value.symbol, event_time=value.event_time"
+  }
+}
