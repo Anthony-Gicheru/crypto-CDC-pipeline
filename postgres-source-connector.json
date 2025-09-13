@@ -1,0 +1,14 @@
+{
+  "name": "postgres-source-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "cdc_user",
+    "database.password": "password",
+    "database.dbname": "binance",
+    "topic.prefix": "dbz",
+    "plugin.name": "pgoutput",
+    "snapshot.mode": "initial"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "cassandra-sink-connector",
+  "config": {
+    "connector.class": "com.datastax.oss.kafka.sink.CassandraSinkConnector",
+    "tasks.max": "1",
+    "topics": "dbz.public.latest_prices,dbz.public.recent_trades,dbz.public.candlesticks_15m,dbz.public.ticker_stats_24h,dbz.public.orderbook_bids,dbz.public.orderbook_asks",
+    "contactPoints": "cassandra",
+    "loadBalancing.localDc": "datacenter1",
+    "port": 9042,
+    "auth.provider": "None",
+    "ssl.provider": "None",
+
+    "topic.dbz.public.orderbook_bids.binance.orderbook_bids.mapping": "price=value.price, quantity=value.quantity, fetched_at=value.fetched_at, symbol=value.symbol",
+    "topic.dbz.public.recent_trades.binance.recent_trades.mapping": "id=value.id, price=value.price, qty=value.qty, quote_qty=value.quoteQty, time=value.time, is_buyer_maker=value.isBuyerMaker, is_best_match=value.isBestMatch, fetched_at=value.fetched_at, symbol=value.symbol",
+    "topic.dbz.public.orderbook_asks.binance.orderbook_asks.mapping": "price=value.price, quantity=value.quantity, fetched_at=value.fetched_at, symbol=value.symbol",
+    "topic.dbz.public.latest_prices.binance.latest_prices.mapping": "symbol=value.symbol, price=value.price, fetched_at=value.fetched_at",
+    "topic.dbz.public.candlesticks_15m.binance.candlesticks_15m.mapping": "open_time=value.open_time, open_price=value.open, high_price=value.high, low_price=value.low, close_price=value.close, volume=value.volume, close_time=value.close_time, quote_asset_volume=value.quote_asset_volume, no_trades=value.num_trades, base_asset_volume=value.taker_buy_base_volume, buy_quote_asset_volume=value.taker_buy_quote_volume, unused=value.ignore, fetched_at=value.fetched_at, symbol=value.symbol",
+    "topic.dbz.public.ticker_stats_24h.binance.ticker_stats_24h.mapping": "symbol=value.symbol, price_change=value.priceChange, price_change_percent=value.priceChangePercent, weighted_avg_price=value.weightedAvgPrice, prev_close_price=value.prevClosePrice, last_price=value.lastPrice, last_qty=value.lastQty, bid_price=value.bidPrice, bid_qty=value.bidQty, ask_price=value.askPrice, ask_qty=value.askQty, open_price=value.openPrice, high_price=value.highPrice, low_price=value.lowPrice, volume=value.volume, quote_volume=value.quoteVolume, open_time=value.openTime, close_time=value.closeTime, first_id=value.firstId, last_id=value.lastId, count=value.count, fetched_at=value.fetched_at",
+
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState"
+  }
+}
