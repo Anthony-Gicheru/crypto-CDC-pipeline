@@ -1,0 +1,6 @@
+requests
+python-dotenv
+SQLAlchemy==1.4.52
+pandas==1.5.3
+psycopg2-binary==2.9.10
+numpy==1.26.4
